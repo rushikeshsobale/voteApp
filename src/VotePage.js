@@ -7,8 +7,8 @@ const ElectionInterface = () => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   const playAudioTone = () => {
-    // const audio = new Audio('assets/Evm2.mp3');
-    // audio.play();
+    const audio = new Audio('WhatsApp Audio 2024-11-16 at 3.41.33 PM (online-audio-converter.com).mp3');
+    audio.play();
   };
 
   const handleButtonClick = (index, candidate) => {
@@ -18,14 +18,36 @@ const ElectionInterface = () => {
     setSelectedCandidate(candidate);
     playAudioTone(); // Play tone
     setShowModal(true);
+    setTimeout(() => {
+      const audio = new Audio('WhatsApp Audio 2024-11-16 at 3.44.21 PM (online-audio-converter.com).mp3');
+      audio.play();
+    }, 2000);
+  };
+
+  const handleShareClick = () => {
+    const url = window.location.href; // Get the current page URL
+    const message = "Check out the election interface!"; // Message to be shared
+
+    // Social media sharing URLs
+    const shareUrl = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(url)}`,
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(message)} ${encodeURIComponent(url)}`,
+    };
+
+    // Open the social media share links in new windows
+    window.open(shareUrl.facebook, "_blank", "width=600,height=400");
+    window.open(shareUrl.twitter, "_blank", "width=600,height=400");
+    window.open(shareUrl.whatsapp, "_blank", "width=600,height=400");
   };
 
   const candidates = [
     {
-      name: "Ganesh Ramchandra Naik",
+      name: "Manda Vijay Mhatre", // English name
+      nameMarathi: "मंदा विजय म्हात्रे", // Marathi name
       party: "Bharatiya Janata Party",
-      symbol: "https://via.placeholder.com/50",
-      photo: "https://via.placeholder.com/50",
+      symbol: "03.png",
+      photo: "WhatsApp Image 2024-11-16 at 5.44.54 PM.jpeg",
     },
     // Add more candidates here
   ];
@@ -42,7 +64,12 @@ const ElectionInterface = () => {
         <button className="btn btn-warning btn-sm mx-2">
           मतदानाच्या दिवशी बटन दाबा
         </button>
-        <button className="btn btn-success btn-sm mx-2">SHARE</button>
+        <button
+          className="btn btn-success btn-sm mx-2"
+          onClick={handleShareClick} // Handle share click
+        >
+          SHARE
+        </button>
       </div>
 
       {/* Voting Table */}
@@ -61,27 +88,36 @@ const ElectionInterface = () => {
             {Array.from({ length: 15 }, (_, index) => (
               <tr key={index}>
                 <td style={{ fontSize: "10px" }}>{index + 1}</td>
-                <td style={{ fontSize: "10px" }}>
+                <td style={{ fontSize: "12px" }}>
                   {index === 1 && (
-                    <div>
-                      <img
-                        src={candidates[0].photo}
-                        alt="Candidate"
-                        className="img-thumbnail mb-1"
-                        style={{ width: "40px", height: "40px" }}
-                      />
-                      <br />
-                      {candidates[0].name}
+                    <div className="d-flex flex-column align-items-center">
+                      <div className="mb-2">
+                        <img
+                          src={candidates[0].photo}
+                          alt="Candidate"
+                          className="img-thumbnail"
+                          style={{
+                            width: "80px", // Adjust size for better visualization
+                            height: "80px", // Ensure the aspect ratio is kept for good visuals
+                            objectFit: "cover", // Optional, ensures the image covers the space
+                          }}
+                        />
+                      </div>
+                      <div className="text-center">
+                        <p>{candidates[0].name}</p>
+                        <p>{candidates[0].nameMarathi}</p> {/* Assuming you have the Marathi name in a different field */}
+                      </div>
                     </div>
                   )}
                 </td>
+
                 <td>
                   {index === 1 && (
                     <img
                       src={candidates[0].symbol}
                       alt="Symbol"
                       className="img-fluid"
-                      style={{ width: "30px" }}
+                      style={{ width: "50px" }}
                     />
                   )}
                 </td>
@@ -90,7 +126,7 @@ const ElectionInterface = () => {
                 </td>
                 <td>
                   <button
-                    style={{fontSize:'10px', width:'40px'}}
+                    style={{ fontSize: '10px' }}
                     className="btn btn-primary btn-sm"
                     onClick={() =>
                       handleButtonClick(index, candidates[0])
