@@ -30,15 +30,16 @@ const ElectionInterface = () => {
 
     // Social media sharing URLs
     const shareUrl = {
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(message)} ${encodeURIComponent(url)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(url)}`,
-      whatsapp: `https://wa.me/?text=${encodeURIComponent(message)} ${encodeURIComponent(url)}`,
+    
     };
-
     // Open the social media share links in new windows
+    window.open(shareUrl.whatsapp, "_blank", "width=600,height=400");
     window.open(shareUrl.facebook, "_blank", "width=600,height=400");
     window.open(shareUrl.twitter, "_blank", "width=600,height=400");
-    window.open(shareUrl.whatsapp, "_blank", "width=600,height=400");
+   
   };
 
   const candidates = [
@@ -57,12 +58,14 @@ const ElectionInterface = () => {
       {/* Header Section */}
       <h4 className="text-center fs-6">150 बेलापूर विधानसभा मतदारसंघ</h4>
       <p className="text-center">
-        <button className="btn btn-primary btn-sm">मदत बटन</button>
+        <button className="btn btn-primary btn-sm mx-2">
+          डेमो मतदानासाठी कमळ चिन्ह समोरिल बटन दाबा
+        </button>
       </p>
 
       <div className="text-center mb-3">
         <button className="btn btn-warning btn-sm mx-2">
-          मतदानाच्या दिवशी बटन दाबा
+          मतदानाच्या दिवशी कमळ चिन्हा समोरिल बटन दाबा
         </button>
         <button
           className="btn btn-success btn-sm mx-2"
