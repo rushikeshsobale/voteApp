@@ -12,3 +12,11 @@ code {
     monospace;
 }
 
+@keyframes slide-up {
+  from {
+    transform: translateY(100%); /* Start from bottom */
+  }
+  to {
+    transform: translateY(0); /* End at its normal position */
+  }
+}

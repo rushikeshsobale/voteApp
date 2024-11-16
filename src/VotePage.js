@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaWhatsapp } from 'react-icons/fa';
 import { Button } from 'react-bootstrap';
+import './index.css';
 const ElectionInterface = () => {
   const [clickCounts, setClickCounts] = useState(Array(15).fill(0));
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +23,7 @@ const ElectionInterface = () => {
     setTimeout(() => {
       const audio = new Audio('WhatsApp Audio 2024-11-16 at 3.44.21 PM (online-audio-converter.com).mp3');
       audio.play();
-    }, 2000);
+    }, 1);
   };
 
   const handleShareClick = () => {
@@ -87,9 +88,10 @@ const ElectionInterface = () => {
       </div>
 
       {/* Voting Table */}
-      <div className="table-responsive">
+      <div className="table-responsive" style={{ margin: '5PX' }}>
         <table className="table table-bordered text-center align-middle"
           style={{
+
             border: "2px solid black", // Border width and color for the table
           }}  // Ensures borders between table cells are collapsed into a single border
         >
@@ -104,7 +106,7 @@ const ElectionInterface = () => {
           </thead>
 
           <tbody className="p-0">
-            {Array.from({ length: 15 }, (_, index) => (
+            {Array.from({ length: 20 }, (_, index) => (
               <tr key={index}>
                 <td style={{ fontSize: "8px", padding: '0px', margin: '0px' }}>{index + 1}</td>
                 <td style={{ fontSize: "8px", padding: '0px' }}>
@@ -177,16 +179,31 @@ const ElectionInterface = () => {
       {/* Modal */}
       {showModal && selectedCandidate && (
         <div
-          className="modal show d-block"
+          className="modal show d-block "
           tabIndex="-1"
           style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "rgba(0, 0, 0, 0.7)", // Darker overlay
+            
           }}
         >
           <div
-            className="modal-dialog modal-dialog-centered "
+            className="modal-dialog modal-dialog-centered p-3 bg-none"
+            style={{
+              maxWidth: "400px", // Smaller width for the modal (card size)
+             
+            }}
           >
-            <div className="modal-content">
+            <div
+              className="modal-content"
+              style={{
+                borderRadius:'0px',
+                backgroundColor: "white", // White background for inner content
+                 // Rounded corners
+                transition: "transform 0.5s ease-out", // Smooth slide-in effect
+                transform: "translateY(100%)", // Start position off-screen
+                animation: "slide-up 0.5s forwards",
+              }}
+            >
               <div className="modal-header">
                 <h5 className="modal-title fs-5">वी.वी.पॅट / VVPAT</h5>
                 <button
@@ -214,14 +231,7 @@ const ElectionInterface = () => {
                   कृपया स्लिपची पडताळणी करा / Please verify slip
                 </p>
               </div>
-              <div className="modal-footer">
-                <button
-                  className="btn btn-secondary btn-sm"
-                  onClick={() => setShowModal(false)}
-                >
-                  Close
-                </button>
-              </div>
+              
             </div>
           </div>
         </div>
