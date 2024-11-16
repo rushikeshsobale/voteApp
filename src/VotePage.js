@@ -33,7 +33,7 @@ const ElectionInterface = () => {
   return (
     <div className="container my-4">
       {/* Header Section */}
-      <h4 className="text-center fs-6">150 ऐरोली विधानसभा मतदारसंघ</h4>
+      <h4 className="text-center fs-6">150 बेलापूर विधानसभा मतदारसंघ</h4>
       <p className="text-center">
         <button className="btn btn-primary btn-sm">मदत बटन</button>
       </p>
@@ -90,13 +90,13 @@ const ElectionInterface = () => {
                 </td>
                 <td>
                   <button
-                    style={{fontSize:'10px', width:'57px'}}
+                    style={{fontSize:'10px', width:'40px'}}
                     className="btn btn-primary btn-sm"
                     onClick={() =>
                       handleButtonClick(index, candidates[0])
                     }
                   >
-                    बटन दाबा 
+                    PRESS
                   </button>
                 </td>
               </tr>
