@@ -9,8 +9,8 @@ const ElectionInterface = () => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   const playAudioTone = () => {
-    // const audio = new Audio('WhatsApp Audio 2024-11-16 at 3.41.33 PM (online-audio-converter.com).mp3');
-    // audio.play();
+    const audio = new Audio('WhatsApp Audio 2024-11-16 at 3 (mp3cut.net).mp3');
+    audio.play();
   };
 
   const handleButtonClick = (index, candidate) => {
@@ -19,11 +19,12 @@ const ElectionInterface = () => {
     setClickCounts(updatedCounts);
     setSelectedCandidate(candidate);
     playAudioTone(); // Play tone
-    setShowModal(true);
+  
     setTimeout(() => {
+      setShowModal(true);
       const audio = new Audio('WhatsApp Audio 2024-11-16 at 3.44.21 PM (online-audio-converter.com).mp3');
       audio.play();
-    }, 1);
+    }, 1000);
   };
 
   const handleShareClick = () => {
