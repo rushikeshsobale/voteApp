@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { FaWhatsapp } from 'react-icons/fa';
+import { Button } from 'react-bootstrap';
 const ElectionInterface = () => {
   const [clickCounts, setClickCounts] = useState(Array(15).fill(0));
   const [showModal, setShowModal] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   const playAudioTone = () => {
-    const audio = new Audio('WhatsApp Audio 2024-11-16 at 3.41.33 PM (online-audio-converter.com).mp3');
-    audio.play();
+    // const audio = new Audio('WhatsApp Audio 2024-11-16 at 3.41.33 PM (online-audio-converter.com).mp3');
+    // audio.play();
   };
 
   const handleButtonClick = (index, candidate) => {
@@ -33,13 +34,13 @@ const ElectionInterface = () => {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(message)} ${encodeURIComponent(url)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(url)}`,
-    
+
     };
     // Open the social media share links in new windows
     window.open(shareUrl.whatsapp, "_blank", "width=600,height=400");
     window.open(shareUrl.facebook, "_blank", "width=600,height=400");
     window.open(shareUrl.twitter, "_blank", "width=600,height=400");
-   
+
   };
 
   const candidates = [
@@ -54,94 +55,123 @@ const ElectionInterface = () => {
   ];
 
   return (
-    <div className="container my-4">
+    <div className="my-2">
       {/* Header Section */}
-      <h4 className="text-center fs-6">150 बेलापूर विधानसभा मतदारसंघ</h4>
+      <h5 className="text-center" style={{ padding: '0px', fontSize: '12px', marginBottom: '0px' }}>150 बेलापूर विधानसभा मतदारसंघ</h5>
       <p className="text-center">
-        <button className="btn btn-primary btn-sm mx-2">
+        <button
+          className="btn btn-primary btn-sm mx-2 text-white rounded"
+          style={{
+            borderRadius: '10px',
+            background: '#393186',
+            fontSize: '10px',
+            boxShadow: '0 5px 10px rgba(0, 0, 0, 0.3)',// Adds a subtle shadow
+          }}
+        >
           डेमो मतदानासाठी कमळ चिन्ह समोरिल बटन दाबा
         </button>
+
       </p>
 
-      <div className="text-center mb-3">
-        <button className="btn btn-warning btn-sm mx-2">
+      <div className="text-center mb-3 d-flex">
+        <button className="btn btn-warning btn-sm mx-1 text-white p-1" style={{ background: '#ff6634', fontSize: '10px', fontWeight: '800', padding: '0px' }}>
           मतदानाच्या दिवशी कमळ चिन्हा समोरिल बटन दाबा
         </button>
-        <button
-          className="btn btn-success btn-sm mx-2"
-          onClick={handleShareClick} // Handle share click
+        <Button
+          className="btn btn-success btn-sm mx-2 my-auto"
+          onClick={handleShareClick}
+          style={{ fontSize: '10px', padding: '0px', width: '100px', height: '30px' }}
         >
-          SHARE
-        </button>
+          <FaWhatsapp className="me-2" /> SHARE
+        </Button>
       </div>
 
       {/* Voting Table */}
       <div className="table-responsive">
-        <table className="table table-bordered text-center align-middle">
+        <table className="table table-bordered text-center align-middle"
+          style={{
+            border: "2px solid black", // Border width and color for the table
+          }}  // Ensures borders between table cells are collapsed into a single border
+        >
           <thead>
             <tr>
-              <th style={{ fontSize: "12px" }}>S.No.</th>
-              <th style={{ fontSize: "12px" }}>Name of Candidate</th>
-              <th style={{ fontSize: "12px" }}>Election Symbol</th>
-              <th style={{ fontSize: "12px" }}>Bulb</th>
-              <th style={{ fontSize: "12px" }}>Button</th>
+              <th style={{ fontSize: "11px", fontWeight: "normal" }}>S.No.</th>
+              <th style={{ fontSize: "11px", fontWeight: "normal" }}>Name of Candidate</th>
+              <th style={{ fontSize: "11px", fontWeight: "normal", padding: '0px' }}>Election Symbol</th>
+              <th style={{ fontSize: "11px", fontWeight: "normal" }}>Bulb</th>
+              <th style={{ fontSize: "11px", fontWeight: "normal" }}>Button</th>
             </tr>
           </thead>
-          <tbody>
+
+          <tbody className="p-0">
             {Array.from({ length: 15 }, (_, index) => (
               <tr key={index}>
-                <td style={{ fontSize: "10px" }}>{index + 1}</td>
-                <td style={{ fontSize: "12px" }}>
+                <td style={{ fontSize: "8px", padding: '0px', margin: '0px' }}>{index + 1}</td>
+                <td style={{ fontSize: "8px", padding: '0px' }}>
                   {index === 1 && (
-                    <div className="d-flex flex-column align-items-center">
-                      <div className="mb-2">
-                        <img
-                          src={candidates[0].photo}
-                          alt="Candidate"
-                          className="img-thumbnail"
-                          style={{
-                            width: "80px", // Adjust size for better visualization
-                            height: "80px", // Ensure the aspect ratio is kept for good visuals
-                            objectFit: "cover", // Optional, ensures the image covers the space
-                          }}
-                        />
-                      </div>
-                      <div className="text-center">
-                        <p>{candidates[0].name}</p>
-                        <p>{candidates[0].nameMarathi}</p> {/* Assuming you have the Marathi name in a different field */}
-                      </div>
+
+                    <div className="d-flex flex-row align-items-center">
+                      <td>
+                        <div className="text-center" style={{ width: '85px' }}>
+                          <p style={{ fontSize: '11px', fontWeight: '600', marginBottom: '0px', width: '83px' }}>{candidates[0].nameMarathi}</p>
+                          <p style={{ marginBottom: '0px', width: '83px' }}>{candidates[0].name}</p>
+                          {/* Assuming you have the Marathi name in a different field */}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="">
+                          <img
+                            src={candidates[0].photo}
+                            alt="Candidate"
+                            className="img"
+                            style={{
+                              width: "40px", // Adjust size for better visualization
+                              height: "35px", // Ensure the aspect ratio is kept for good visuals
+                              objectFit: "cover", // Optional, ensures the image covers the space
+                            }}
+                          />
+                        </div>
+                      </td>
                     </div>
                   )}
                 </td>
 
-                <td>
+                <td style={{ width: '40px', padding: '0px' }}>
                   {index === 1 && (
                     <img
                       src={candidates[0].symbol}
                       alt="Symbol"
                       className="img-fluid"
-                      style={{ width: "50px" }}
+                      style={{ width: "40px" }}
                     />
                   )}
                 </td>
-                <td>
+                <td style={{ padding: '0px', fontSize: '9px' }}>
                   <span>&larr;</span>
                 </td>
-                <td>
+                <td style={{ padding: '0px' }}>
                   <button
-                    style={{ fontSize: '10px' }}
-                    className="btn btn-primary btn-sm"
-                    onClick={() =>
-                      handleButtonClick(index, candidates[0])
-                    }
+                    style={{
+                      fontSize: '8px',
+                      background: '#393186',
+                      borderRadius: '10px',
+                      width: '45px',
+                      height: '20px',
+                      padding: '0px',
+                      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)', // Adds a shadow effect
+                    }}
+                    className="btn btn-primary btn-sm mb-1" // Adds bottom margin using Bootstrap class
+                    onClick={() => handleButtonClick(index, candidates[0])}
                   >
-                    PRESS
+                    {index === 1 ? 'बटण दाबा' : ''}
                   </button>
                 </td>
+
               </tr>
             ))}
           </tbody>
         </table>
+        <p style={{ fontSize: '5px' }}>अस्वीकरण: ही एक शैक्षणिक व प्रमोशनल वेबसाइट आहे, आणि याचा वास्तविक मतदानाशी काहीही संबंध नाही. माहितीपूर्ण उद्देशासाठी कृपया याचा वापर करा.</p>
       </div>
 
       {/* Modal */}
